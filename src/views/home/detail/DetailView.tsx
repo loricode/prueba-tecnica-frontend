@@ -52,7 +52,7 @@ export const DetailView = () => {
           </div>
 
            <div>
-            <img className='w-48' src={state.sprites.back_default} alt="..." />
+            <img className='w-48 h-48' defaultValue={"foto"} src={state.sprites.back_default} alt="..." />
            </div>
 
            <div>
@@ -62,7 +62,7 @@ export const DetailView = () => {
           </div>
 
           <div>
-            Abilidades:&nbsp; 
+            Tipos:&nbsp; 
           {state.types.map(item => (
             item.type.name +' '  
           ))}
