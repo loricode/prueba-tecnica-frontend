@@ -18,6 +18,8 @@ export const HomeView = () => {
 
   const navigate = useNavigate();
 
+  const [counter, setCounter] = useState(1)
+
   const [state, setState] = useState<Pagination>({
     count: 0,
     next: "",
@@ -61,6 +63,8 @@ export const HomeView = () => {
   };
 
   const paginationNext = async() => {
+    
+    setCounter(prev => prev + 1);
 
     const { next } = state;
 
@@ -75,6 +79,8 @@ export const HomeView = () => {
   }
 
   const paginationPrevious = async() => {
+    
+    setCounter(prev => prev - 1);
 
     const { previous } = state;
 
@@ -107,7 +113,8 @@ export const HomeView = () => {
               <div className='p-2' onClick={() => detailPokemon(item.id)}>
                 <div className='flex justify-center'>
                   <img
-                    className='w-8/12'
+                    className='w-8/12 h-48'
+                    defaultValue={"foto"}
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${item.id}.png`} alt="" />
                 </div>
                 <div className='text-start text-3xl ml-2 font-bold text-lime-800 mb-4'>
@@ -122,7 +129,7 @@ export const HomeView = () => {
       {state.results.length > 0 ?
         <div className='flex justify-center items-center mb-2'>
           <button onClick={paginationPrevious}  disabled={state.previous === null} className='m-1 text-lg w-9 h-9  rounded-full bg-white'> {"<"} </button>
-          {quantityPokemon()}
+          {counter +" de "+ quantityPokemon()}
           <button onClick={paginationNext} className='m-1  text-lg w-9 h-9 rounded-full bg-white'>
             {">"}
           </button>
