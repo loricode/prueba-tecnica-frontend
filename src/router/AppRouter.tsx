@@ -4,20 +4,15 @@ import {  BrowserRouter, Routes, Route } from 'react-router-dom';
 import { authRoutes } from './authRoutes';
 import { dashRoutes } from './dashRoutes';
 
-import { useGlobal } from '../context/useGlobal';
-
+//components
 import { ProtectedRoute } from '../components/security/ProtectedRoute';
-import { Navbar } from '../components/navbar/Navbar';
-
+import { DashboardView  } from '../views/dashboard/DashboardView';
 
 export const AppRouter = () => {
-
-  const { state } = useGlobal()
 
    return (
     <>
       <BrowserRouter basename='/monoma'>
-      { state.logout ? <Navbar /> : <div/> }
 
         <Routes>
               
@@ -27,13 +22,17 @@ export const AppRouter = () => {
                     path={item.path}
                     element={<item.element/>}/>     
             )) }
+
+            <Route path='/dashboard'
+             element={<ProtectedRoute><DashboardView /></ProtectedRoute>}>
            
-            {dashRoutes.map(item => (
+             {dashRoutes.map(item => (
                   <Route  
                     key={item.id}
                     path={item.path}
-                    element={<ProtectedRoute><item.element/></ProtectedRoute>}/>   
+                    element={<item.element/>}/>   
               )) }
+            </Route> 
            
         </Routes>
       </BrowserRouter>

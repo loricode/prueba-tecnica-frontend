@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, } from 'react';
 import { useNavigate } from 'react-router-dom';
 import tw from "twin.macro";
 
+//components
+import { CardPokemon } from '../../../components/cards/CardPokemon';
 
-import { CardPokemon } from '../../components/cards/CardPokemon';
+//actions
+import { PokemonService } from '../../../actions/pokeApi/pokeApiAction';
 
-import { PokemonService } from '../../actions/pokeApi/pokeApiAction';
+//components
+import { ModalDetail, modalDetailOpen } from '../../../components/modals/ModalDetail';
 
 //interface
-import { Pagination } from '../../interfaces/pokemon.interface';
+import { Pagination } from '../../../interfaces/pokemon.interface';
 
 export const StyledContainer = tw.div`
   flex justify-center flex-wrap p-2`
@@ -18,7 +22,9 @@ export const HomeView = () => {
 
   const navigate = useNavigate();
 
-  const [counter, setCounter] = useState(1)
+  const [counter, setCounter] = useState(1);
+
+  const [idPokemon, setIdPokemon] = useState("");
 
   const [state, setState] = useState<Pagination>({
     count: 0,
@@ -31,6 +37,7 @@ export const HomeView = () => {
   useEffect(() => {
    
     listPokemon();
+
   }, []);
 
   const listPokemon = async () => {
@@ -59,9 +66,12 @@ export const HomeView = () => {
 
   }
 
+  /* esta implementado tambien para una pagina para ver el detalle del pokemon
+   puede utilizar esta funcion para ir a esa pagina
   const detailPokemon = (id: string = "") => {
-    navigate("/detail", { state: { id } })
-  };
+
+    navigate("../detail", { state: { id } })
+  };*/
 
   const paginationNext = async() => {
     
@@ -105,13 +115,15 @@ export const HomeView = () => {
 
   return (
     <>
-     
-
       <StyledContainer>
         {
           state.results.map((item) => (
             <CardPokemon key={item.id}>
-              <div className='p-2' onClick={() => detailPokemon(item.id)}>
+              <div className='p-2' 
+              onClick={ () => {
+                setIdPokemon(item.id);
+                modalDetailOpen()
+                }}>
                 <div className='flex justify-center'>
                   <img
                     className='w-8/12 h-48'
@@ -135,8 +147,8 @@ export const HomeView = () => {
             {">"}
           </button>
         </div>
-        : null}
-
+      : null}
+      <ModalDetail idPokemon={idPokemon} />
     </>
   )
 }

@@ -13,7 +13,8 @@ export class PokemonService{
    }
    
    public async getListPokemon( path="limit=10&offset=0" ):Promise<{status:number, data:Pagination}> {
-      return await httpSureService.get(`/pokemon/?${path}`, {});
+
+     return await httpSureService.get(`/pokemon/?${path}`, {});
    }
 
    

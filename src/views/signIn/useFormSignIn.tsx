@@ -76,14 +76,14 @@ export const useFormSignIn = () => {
         await AuthService.service.signIn(objReq).then((response) =>{
            if(response.status === 200){
               Swal.close()
-              console.log(response)
+              
               dispatch(
                { type:"AUTHENTICATED", payload:{user:{ id:response.data.id,
                    token:response.data.token,
                     name:response.data.name,
                     email:response.data.email }}
                });
-              navigate("/home");
+              navigate("/dashboard/home");
            }
          }).catch(() => {
             Swal.close()

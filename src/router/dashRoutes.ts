@@ -1,21 +1,21 @@
-import { HomeView } from '../views/home/HomeView';
-import { DetailView } from '../views/home/detail/DetailView';
-import { ProfileView } from '../views/home/profile/ProfileView';
+import { HomeView } from '../views/dashboard/home/HomeView';
+import { DetailView } from '../views/dashboard/detail/DetailView';
+import { ProfileView } from '../views/dashboard/profile/ProfileView';
 
 export const dashRoutes =  [
    {
       id:'1',
-      path:'/home',
-      element: HomeView,
+      path:'home',
+      element:HomeView
    },
    {
       id:'2',
-      path:'/detail',
+      path:'detail',
       element: DetailView,
    },
    {
       id:'2',
-      path:'/profile',
+      path:'profile',
       element: ProfileView,
    },
 ]
