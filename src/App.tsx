@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { AppRouter } from './router/AppRouter';
+import { useGlobal } from './context/useGlobal';
+//console.log(process.env.REACT_APP_BASEURL)
+
+import { AuthService } from './actions/signIn/signInAction';
 
 function App() {
+
+  const { dispatch } = useGlobal()
+
+  useEffect(() => {
+    AuthService.service.validToken(dispatch)
+  }, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppRouter />
   );
 }
 
