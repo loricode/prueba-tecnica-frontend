@@ -66,7 +66,7 @@ export const ModalDetail = ({ idPokemon }:Props) => {
   return (
    <div id="defaultModal" 
    tabIndex={-1} aria-hidden="false"
-    className={`fixed top-10 z-50 ${openModal ? 'block' : 'hidden' } w-full p-4 overflow-x-hidden overflow-y-auto inset-x-1/4 h-[calc(100%-1rem)] max-h-full`}>
+    className={`fixed top-10 z-50 ${openModal ? 'block' : 'hidden' } ease-in duration-300 w-full p-4 overflow-x-hidden overflow-y-auto inset-x-1/4 h-[calc(100%-1rem)] max-h-full`}>
     
     <div className="relative  w-full max-w-2xl max-h-full">
       
