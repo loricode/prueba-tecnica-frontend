@@ -5,7 +5,7 @@ type Props = { children: ReactElement };
 
 //import { useGlobal } from '../../context/useGlobal';
 
-export const ProtectedRoute = ({ children }:any) => {
+export const ProtectedRoute = ({ children }:Props) => {
 
 //  const { state } = useGlobal();
   

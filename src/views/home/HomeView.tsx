@@ -29,6 +29,7 @@ export const HomeView = () => {
 
 
   useEffect(() => {
+   
     listPokemon();
   }, []);
 
