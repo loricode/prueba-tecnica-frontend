@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import tw from "twin.macro";
 
 export const StyledCard = tw.div`
-  rounded bg-white p-2 shadow-md`
+  rounded-lg bg-white p-4 shadow-md sm:w-full md:w-1/4 `
 ;
 
 type Props = {
