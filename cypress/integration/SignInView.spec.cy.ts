@@ -1,10 +1,19 @@
 describe("mi primera prueba", () => {
 
- it("sub prueba", () =>{
+  beforeEach(() => {
+    cy.visit("http://localhost:2500/monoma")
+  })
 
-  cy.visit("http://localhost:2500/monoma")
-    cy.contains("Monoma")
-   
+ it("form login", () =>{
+    
+  cy.contains("Monoma");
+
+  cy.get("button").should('contain', "Login");   
+ })
+
+ it("form login inpust", () =>{
+    
+  cy.get('[placeholder="Email"]');
  })
 
 })
