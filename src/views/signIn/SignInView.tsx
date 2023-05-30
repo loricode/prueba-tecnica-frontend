@@ -11,7 +11,7 @@ export const SignInView = () => {
   const hasToken = localStorage.getItem("token"); 
 
   if(hasToken){
-     return <Navigate to="/dashboard/home" />
+     return <Navigate to="/dashboard" />
   }
 
    return (

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import tw from "twin.macro";
 import { Link } from 'react-router-dom';
 
-import { useGlobal } from '../../context/useGlobal';
+import { useUserDispatch } from '../../context/store/user/UserContext';
 
 export const StyledNavbar = tw.div`
   flex justify-between items-center bg-slate-950 p-2 h-14`
@@ -11,7 +11,7 @@ export const StyledNavbar = tw.div`
 
 export const Navbar = () => {
 
-  const { dispatch } = useGlobal()
+  const dispatch = useUserDispatch()
 
   const navigate = useNavigate();
 
@@ -23,10 +23,7 @@ export const Navbar = () => {
 
   const closeSession = () => {
     localStorage.clear();
-    dispatch(
-      { type:"LOGOUT",
-        payload:{user:{ id:"", token:"", name:"", email:"" }}
-    });
+    dispatch({ type:"LOGOUT" });
     navigate("/")
   } 
 

@@ -30,6 +30,7 @@ export const AppRouter = () => {
                   <Route  
                     key={item.id}
                     path={item.path}
+                    index={item.index}
                     element={<item.element/>}/>   
               )) }
             </Route> 

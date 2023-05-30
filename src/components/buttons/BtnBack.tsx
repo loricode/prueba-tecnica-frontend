@@ -6,7 +6,7 @@ export const BtnBack = () => {
 
   return (
    <button className='w-auto m-1 px-2 pb-1 mt-2 bg-slate-950 text-white rounded drop-shadow-lg'
-      onClick={() => navigate("../home")}>
+      onClick={() => navigate("/")}>
       Regresar
    </button>
   )

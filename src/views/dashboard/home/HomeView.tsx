@@ -1,5 +1,4 @@
-import { useState, useEffect, } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import tw from "twin.macro";
 
 //components
@@ -14,14 +13,14 @@ import { ModalDetail, modalDetailOpen } from '../../../components/modals/ModalDe
 //interface
 import { Pagination } from '../../../interfaces/pokemon.interface';
 
+const URL_IMAGE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/"
+
 export const StyledContainer = tw.div`
   flex justify-center flex-wrap p-2`
   ;
 
 export const HomeView = () => {
-
-  const navigate = useNavigate();
-
+;
   const [counter, setCounter] = useState(1);
 
   const [idPokemon, setIdPokemon] = useState("");
@@ -33,21 +32,22 @@ export const HomeView = () => {
     previous: null,
   });
 
+  
 
   useEffect(() => {
-   
-    listPokemon();
+    
+    const listPokemon = async () => {
 
+      const response = await PokemonService.service.getListPokemon();
+     
+      changeState(response);
+    
+    };
+    
+    listPokemon();
   }, []);
 
-  const listPokemon = async () => {
-
-    const response = await PokemonService.service.getListPokemon();
-   
-    changeState(response);
-  
-  };
-
+ 
   const changeState = (response:{ data:Pagination }) => {
 
     const results = response.data.results.map(item => {
@@ -128,7 +128,7 @@ export const HomeView = () => {
                   <img
                     className='w-8/12 h-48'
                     defaultValue={"foto"}
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${item.id}.png`} alt="" />
+                    src={`${URL_IMAGE}${item.id}.png`} alt="..." />
                 </div>
                 <div className='text-start text-3xl ml-2 font-bold text-lime-800 mb-4'>
                   {item.name}
@@ -143,7 +143,7 @@ export const HomeView = () => {
         <div className='flex justify-center items-center mb-2'>
           <button onClick={paginationPrevious}  disabled={state.previous === null} className='m-1 text-lg w-9 h-9  rounded-full bg-white'> {"<"} </button>
           {counter +" de "+ quantityPokemon()}
-          <button onClick={paginationNext} className='m-1  text-lg w-9 h-9 rounded-full bg-white'>
+          <button onClick={paginationNext} className='m-1 text-lg w-9 h-9 rounded-full bg-white'>
             {">"}
           </button>
         </div>

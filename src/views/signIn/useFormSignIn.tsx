@@ -7,7 +7,7 @@ import { validateProperty, validateEmail } from '../../utils/validation';
 
 import { alertMessage } from '../../utils/alertMessage';
 
-import { useGlobal } from '../../context/useGlobal';
+import { useUserDispatch } from '../../context/store/user/UserContext';
 
 
 interface SyntheticEvent<T> {
@@ -16,7 +16,7 @@ interface SyntheticEvent<T> {
 
 export const useFormSignIn = () => {
 
-   const { dispatch } = useGlobal();
+   const dispatch = useUserDispatch();
 
    const navigate = useNavigate();
 
@@ -62,12 +62,12 @@ export const useFormSignIn = () => {
          password:state.password,
       }
 
-     const filedsRequered = [
+     const filedsRequired = [
          { code: 'email', codeError: 'CodeRequiredEmail' },
          { code: 'password', codeError: 'CodeRequiredPassword' },
      ];
 
-    const validFields = validateProperty(filedsRequered, objReq);
+    const validFields = validateProperty(filedsRequired, objReq);
 
     if(validFields){
 
@@ -78,12 +78,12 @@ export const useFormSignIn = () => {
               Swal.close()
               
               dispatch(
-               { type:"AUTHENTICATED", payload:{user:{ id:response.data.id,
-                   token:response.data.token,
-                    name:response.data.name,
-                    email:response.data.email }}
+               { type:"LOGIN", payload:{ 
+                    userId:response.data.id,
+                    fullName:response.data.name,
+                    email:response.data.email }
                });
-              navigate("/dashboard/home");
+              navigate("/dashboard");
            }
          }).catch(() => {
             Swal.close()

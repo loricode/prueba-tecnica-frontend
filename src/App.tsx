@@ -1,18 +1,16 @@
 import { useEffect } from 'react';
 import { AppRouter } from './router/AppRouter';
-import { useGlobal } from './context/useGlobal';
-//console.log(process.env.REACT_APP_BASEURL)
+import { useUserDispatch } from './context/store/user/UserContext';
 
 import { AuthService } from './actions/signIn/signInAction';
 
 function App() {
 
-  const { dispatch } = useGlobal()
+  const dispatch = useUserDispatch()
 
   useEffect(() => {
     AuthService.service.validToken(dispatch)
-  }, []);
-
+  }, [dispatch]);
 
   return (
     <AppRouter />

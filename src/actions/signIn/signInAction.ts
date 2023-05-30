@@ -31,12 +31,14 @@ export class AuthService{
 
       if(hasToken){
          dispatch(
-            { type:"AUTHENTICATED",
-              payload:{user:{ id:response.data.id,
-              token:response.data.token,
-              name:response.data.name,
-              email:response.data.email }}
-            });
+            { type:"LOGIN",
+              payload:{
+               userId:response.data.id,
+               fullName:response.data.name,
+               email:response.data.email 
+             }
+            }
+         );
       }
  
        return response

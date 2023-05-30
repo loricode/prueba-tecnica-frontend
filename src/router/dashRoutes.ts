@@ -5,17 +5,20 @@ import { ProfileView } from '../views/dashboard/profile/ProfileView';
 export const dashRoutes =  [
    {
       id:'1',
-      path:'home',
+      index:true,
+      path:'',
       element:HomeView
    },
    {
       id:'2',
       path:'detail',
+      index:false,
       element: DetailView,
    },
    {
       id:'2',
       path:'profile',
+      index:false,
       element: ProfileView,
    },
 ]
